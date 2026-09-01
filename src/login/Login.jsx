@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+
 import "./Login.css";
 
 import logo from "../assets/images/TV-BG.png";
 
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+
 import {
   FiEye,
   FiEyeOff,
@@ -13,137 +18,339 @@ import {
   FiCheck,
 } from "react-icons/fi";
 
-// const API_URL = "https://truvish-backend-production.up.railway.app/api/corporate/login";
 
-const API_URL = "http://api.truvish.com/api/corporate/login";
+// =========================================================
+// API CONFIGURATION
+// IMPORTANT:
+// Always use HTTPS for production.
+// VITE_API_BASE should be:
+// https://api.truvish.com
+// =========================================================
 
-const Login = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const API_BASE = (
+  import.meta.env.VITE_API_BASE ||
+  "https://api.truvish.com"
+).replace(/\/+$/, "");
 
-  const [remember, setRemember] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
+const API_URL =
+  `${API_BASE}/api/corporate/login`;
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+
+const Login = ({
+  onLogin,
+}) => {
+
+  // =========================================================
+  // STATES
+  // =========================================================
+
+  const [
+    email,
+    setEmail,
+  ] = useState("");
+
+
+  const [
+    password,
+    setPassword,
+  ] = useState("");
+
+
+  const [
+    remember,
+    setRemember,
+  ] = useState(false);
+
+
+  const [
+    showPassword,
+    setShowPassword,
+  ] = useState(false);
+
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(false);
+
+
+  const [
+    loginSuccess,
+    setLoginSuccess,
+  ] = useState(false);
+
+
+  const [
+    emailError,
+    setEmailError,
+  ] = useState("");
+
+
+  const [
+    passwordError,
+    setPasswordError,
+  ] = useState("");
+
 
   // =========================================================
   // LOAD REMEMBERED EMAIL
   // =========================================================
 
   useEffect(() => {
-    const savedEmail =
-      localStorage.getItem("rememberedEmail");
 
-    if (savedEmail) {
-      setEmail(savedEmail);
-      setRemember(true);
+    const savedEmail =
+      localStorage.getItem(
+        "rememberedEmail"
+      );
+
+
+    if (
+      savedEmail
+    ) {
+
+      setEmail(
+        savedEmail
+      );
+
+      setRemember(
+        true
+      );
     }
+
   }, []);
+
 
   // =========================================================
   // EMAIL VALIDATION
   // =========================================================
 
   const validateEmail = () => {
-    if (!email.trim()) {
+
+    if (
+      !email.trim()
+    ) {
+
       return "Email is required";
     }
+
 
     const emailPattern =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailPattern.test(email.trim())) {
+
+    if (
+      !emailPattern.test(
+        email.trim()
+      )
+    ) {
+
       return "Please enter a valid email";
     }
 
+
     return "";
   };
+
 
   // =========================================================
   // PASSWORD VALIDATION
   // =========================================================
 
   const validatePassword = () => {
-    if (!password) {
+
+    if (
+      !password
+    ) {
+
       return "Password is required";
     }
 
+
     return "";
   };
+
 
   // =========================================================
   // EMAIL CHANGE
   // =========================================================
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleEmailChange = (
+    e
+  ) => {
 
-    setEmailError("");
+    setEmail(
+      e.target.value
+    );
+
+    setEmailError(
+      ""
+    );
   };
+
 
   // =========================================================
   // PASSWORD CHANGE
   // =========================================================
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = (
+    e
+  ) => {
 
-    setPasswordError("");
+    setPassword(
+      e.target.value
+    );
+
+    setPasswordError(
+      ""
+    );
   };
+
 
   // =========================================================
   // LOGIN
   // =========================================================
 
   const handleLogin = async () => {
+
+    // -------------------------------------------------------
     // Clear previous errors
+    // -------------------------------------------------------
+
     setEmailError("");
     setPasswordError("");
 
-    // Validate
-    const emailValidation = validateEmail();
-    const passwordValidation = validatePassword();
 
-    if (emailValidation || passwordValidation) {
-      setEmailError(emailValidation);
-      setPasswordError(passwordValidation);
+    // -------------------------------------------------------
+    // Validate
+    // -------------------------------------------------------
+
+    const emailValidation =
+      validateEmail();
+
+
+    const passwordValidation =
+      validatePassword();
+
+
+    if (
+      emailValidation ||
+      passwordValidation
+    ) {
+
+      setEmailError(
+        emailValidation
+      );
+
+      setPasswordError(
+        passwordValidation
+      );
 
       return;
     }
 
+
     try {
-      setLoading(true);
 
-      const response = await fetch(API_URL, {
-        method: "POST",
+      setLoading(
+        true
+      );
 
-        headers: {
-          "Content-Type": "application/json",
-        },
 
-        body: JSON.stringify({
-          email: email.trim(),
-          password: password,
-        }),
-      });
+      // -----------------------------------------------------
+      // DEBUG
+      // -----------------------------------------------------
+
+      console.log(
+        "Corporate Login API:",
+        API_URL
+      );
+
+
+      // -----------------------------------------------------
+      // LOGIN REQUEST
+      // -----------------------------------------------------
+
+      const response =
+        await fetch(
+          API_URL,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            body: JSON.stringify({
+              email:
+                email.trim(),
+
+              password:
+                password,
+            }),
+          }
+        );
+
+
+      // -----------------------------------------------------
+      // READ RESPONSE
+      // -----------------------------------------------------
+
+      const responseText =
+        await response.text();
+
+
+      console.log(
+        "Corporate Login Status:",
+        response.status
+      );
+
+
+      console.log(
+        "Corporate Login Response:",
+        responseText
+      );
+
+
+      // -----------------------------------------------------
+      // PARSE RESPONSE
+      // -----------------------------------------------------
 
       let data = {};
 
+
       try {
-        data = await response.json();
-      } catch {
+
+        data =
+          responseText
+            ? JSON.parse(
+                responseText
+              )
+            : {};
+
+      } catch (
+        parseError
+      ) {
+
+        console.error(
+          "Login response JSON parse error:",
+          parseError
+        );
+
         data = {};
       }
+
 
       // =====================================================
       // LOGIN FAILED
       // =====================================================
 
-      if (!response.ok || !data.success) {
+      if (
+        !response.ok ||
+        !data.success
+      ) {
+
         /*
          * Both fields become red.
          *
@@ -152,74 +359,121 @@ const Login = ({ onLogin }) => {
 
         const message =
           data.message ||
+          data.error ||
           "Incorrect email or password";
 
-        setEmailError(message);
-        setPasswordError(message);
+
+        setEmailError(
+          message
+        );
+
+
+        setPasswordError(
+          message
+        );
+
 
         return;
       }
+
 
       // =====================================================
       // SAVE LOGIN DATA
       // =====================================================
 
-      if (data.token) {
+      if (
+        data.token
+      ) {
+
         localStorage.setItem(
           "token",
           data.token
         );
       }
 
-      if (data.clientId) {
+
+      if (
+        data.clientId
+      ) {
+
         localStorage.setItem(
           "clientId",
           data.clientId
         );
       }
 
-      if (data.email) {
+
+      if (
+        data.email
+      ) {
+
         localStorage.setItem(
           "email",
           data.email
         );
       }
 
+
       // =====================================================
       // REMEMBER EMAIL
       // =====================================================
 
-      if (remember) {
+      if (
+        remember
+      ) {
+
         localStorage.setItem(
           "rememberedEmail",
           email.trim()
         );
+
       } else {
+
         localStorage.removeItem(
           "rememberedEmail"
         );
       }
 
+
       // =====================================================
       // SUCCESS STATE
       // =====================================================
 
-      setLoginSuccess(true);
+      setLoginSuccess(
+        true
+      );
+
 
       /*
        * Green Sign In button stays visible briefly,
        * then dashboard opens.
        */
 
-      setTimeout(() => {
-        onLogin();
-      }, 650);
+      setTimeout(
+        () => {
 
-    } catch (error) {
+          if (
+            typeof onLogin ===
+            "function"
+          ) {
+
+            onLogin();
+          }
+
+        },
+        650
+      );
+
+
+    } catch (
+      error
+    ) {
+
       console.error(
         "Login error:",
         error
       );
+
 
       /*
        * No top error message.
@@ -230,62 +484,98 @@ const Login = ({ onLogin }) => {
         "Unable to connect to server"
       );
 
+
       setPasswordError(
         "Please try again"
       );
 
+
     } finally {
-      setLoading(false);
+
+      setLoading(
+        false
+      );
     }
   };
+
 
   // =========================================================
   // ENTER KEY
   // =========================================================
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (
+    e
+  ) => {
+
     if (
       e.key === "Enter" &&
       !loading &&
       !loginSuccess
     ) {
+
       handleLogin();
     }
   };
 
-  return (
-    <div className="login-page">
 
-      <div className="login-card">
+  // =========================================================
+  // UI
+  // =========================================================
+
+  return (
+
+    <div
+      className="login-page"
+    >
+
+      <div
+        className="login-card"
+      >
 
         {/* =================================================
             LOGO
         ================================================= */}
 
-        <div className="login-logo">
+        <div
+          className="login-logo"
+        >
+
           <img
             src={logo}
             alt="Truvish"
           />
+
         </div>
+
 
         {/* =================================================
             TITLE
         ================================================= */}
 
-        <h1>TRUVISH</h1>
+        <h1>
+          TRUVISH
+        </h1>
 
-        <p className="login-subtitle">
+
+        <p
+          className="login-subtitle"
+        >
           Sign in to your Corporate Rewards Dashboard
         </p>
+
 
         {/* =================================================
             EMAIL
         ================================================= */}
 
-        <div className="input-group">
+        <div
+          className="input-group"
+        >
 
-          <label>Email</label>
+          <label>
+            Email
+          </label>
+
 
           <div
             className={`input-box ${
@@ -298,6 +588,7 @@ const Login = ({ onLogin }) => {
             <MdEmail
               className="input-icon"
             />
+
 
             <input
               type="email"
@@ -318,25 +609,38 @@ const Login = ({ onLogin }) => {
 
           </div>
 
+
           {emailError && (
-            <div className="field-error">
+
+            <div
+              className="field-error"
+            >
+
               <FiAlertCircle />
 
               <span>
                 {emailError}
               </span>
+
             </div>
+
           )}
 
         </div>
+
 
         {/* =================================================
             PASSWORD
         ================================================= */}
 
-        <div className="input-group">
+        <div
+          className="input-group"
+        >
 
-          <label>Password</label>
+          <label>
+            Password
+          </label>
+
 
           <div
             className={`input-box ${
@@ -349,6 +653,7 @@ const Login = ({ onLogin }) => {
             <RiLockPasswordLine
               className="input-icon"
             />
+
 
             <input
               type={
@@ -370,6 +675,7 @@ const Login = ({ onLogin }) => {
                 loginSuccess
               }
             />
+
 
             <button
               className="eye-btn"
@@ -395,25 +701,37 @@ const Login = ({ onLogin }) => {
 
           </div>
 
+
           {passwordError && (
-            <div className="field-error">
+
+            <div
+              className="field-error"
+            >
+
               <FiAlertCircle />
 
               <span>
                 {passwordError}
               </span>
+
             </div>
+
           )}
 
         </div>
+
 
         {/* =================================================
             REMEMBER
         ================================================= */}
 
-        <div className="remember-row">
+        <div
+          className="remember-row"
+        >
 
-          <label className="remember-checkbox">
+          <label
+            className="remember-checkbox"
+          >
 
             <input
               type="checkbox"
@@ -429,6 +747,7 @@ const Login = ({ onLogin }) => {
               }
             />
 
+
             <span>
               Remember me
             </span>
@@ -436,6 +755,7 @@ const Login = ({ onLogin }) => {
           </label>
 
         </div>
+
 
         {/* =================================================
             SIGN IN BUTTON
@@ -447,7 +767,9 @@ const Login = ({ onLogin }) => {
               ? "login-success"
               : ""
           }`}
-          onClick={handleLogin}
+          onClick={
+            handleLogin
+          }
           disabled={
             loading ||
             loginSuccess
@@ -455,36 +777,52 @@ const Login = ({ onLogin }) => {
         >
 
           {loginSuccess ? (
+
             <>
+
               <FiCheck />
 
               <span>
                 Signed In
               </span>
+
             </>
+
           ) : loading ? (
+
             <>
-              <span className="login-spinner"></span>
+
+              <span
+                className="login-spinner"
+              />
 
               <span>
                 Signing In...
               </span>
+
             </>
+
           ) : (
+
             "Sign In"
+
           )}
 
         </button>
+
 
         {/* =================================================
             SECURITY
         ================================================= */}
 
-        <div className="security-box">
+        <div
+          className="security-box"
+        >
 
           <FiShield
             className="shield-icon"
           />
+
 
           <span>
             Your data is secure with
@@ -498,5 +836,6 @@ const Login = ({ onLogin }) => {
     </div>
   );
 };
+
 
 export default Login;
