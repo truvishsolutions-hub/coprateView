@@ -11,7 +11,7 @@ import {
 const CodeReport = ({ clientId, token, onBack }) => {
 
     // ─── API Base URL ─────────────────────────────────────────
-    const API_BASE = 'http://localhost:8080';
+    const API_BASE = 'http://api.truvish.com';
 
     // ─── Helper: Get full image URL ──────────────────────────
     const getImageUrl = (path) => {
@@ -66,7 +66,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 setLoading(true);
 
                 const response = await fetch(
-                    `http://localhost:8080/api/corporate/code-report/${clientId}`,
+                    `http://api.truvish.com/api/corporate/code-report/${clientId}`,
                     {
                         method: "GET",
                         headers: {

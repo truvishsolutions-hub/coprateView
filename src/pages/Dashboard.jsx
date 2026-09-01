@@ -21,6 +21,18 @@ import TruCodeReport
   from "../components/TruIssued/TruCodeReport/TruCodeReport.jsx";
 
 
+// ==========================================================
+// API BASE URL
+// IMPORTANT:
+// Always use HTTPS in production.
+// ==========================================================
+
+const API_BASE = (
+  import.meta.env.VITE_API_BASE ||
+  "https://api.truvish.com"
+).replace(/\/+$/, "");
+
+
 function Dashboard({
   onLogout,
 }) {
@@ -66,15 +78,11 @@ function Dashboard({
   // ==========================================================
 
   const clientId =
-    localStorage.getItem(
-      "clientId"
-    );
+    localStorage.getItem("clientId");
 
 
   const token =
-    localStorage.getItem(
-      "token"
-    );
+    localStorage.getItem("token");
 
 
   // ==========================================================
@@ -85,6 +93,10 @@ function Dashboard({
     useCallback(
       async () => {
 
+        // ------------------------------------------------------
+        // CLIENT ID / TOKEN CHECK
+        // ------------------------------------------------------
+
         if (
           !clientId ||
           !token
@@ -94,11 +106,9 @@ function Dashboard({
             "Client ID or token missing"
           );
 
-
           setDashboard(null);
 
           setLoading(false);
-
 
           if (
             typeof onLogout ===
@@ -107,7 +117,6 @@ function Dashboard({
 
             onLogout();
           }
-
 
           return;
         }
@@ -118,8 +127,12 @@ function Dashboard({
           setLoading(true);
 
 
+          // ----------------------------------------------------
+          // FINAL HTTPS API URL
+          // ----------------------------------------------------
+
           const url =
-            `http://localhost:8080/api/corporate/dashboard/${clientId}`;
+            `${API_BASE}/api/corporate/dashboard/${clientId}`;
 
 
           console.log(
@@ -127,6 +140,10 @@ function Dashboard({
             url
           );
 
+
+          // ----------------------------------------------------
+          // API REQUEST
+          // ----------------------------------------------------
 
           const response =
             await fetch(
@@ -145,34 +162,108 @@ function Dashboard({
             );
 
 
+          // ----------------------------------------------------
+          // READ RESPONSE SAFELY
+          // ----------------------------------------------------
+
+          const responseText =
+            await response.text();
+
+
           console.log(
             "Corporate Dashboard API Status:",
             response.status
           );
 
 
+          console.log(
+            "Corporate Dashboard API Response:",
+            responseText
+          );
+
+
+          // ----------------------------------------------------
+          // ERROR RESPONSE
+          // ----------------------------------------------------
+
           if (
             !response.ok
           ) {
 
-            const errorText =
-              await response.text();
+            let errorMessage =
+              `Dashboard request failed: ${response.status}`;
+
+
+            try {
+
+              const errorData =
+                responseText
+                  ? JSON.parse(
+                      responseText
+                    )
+                  : {};
+
+
+              errorMessage =
+                errorData.message ||
+                errorData.error ||
+                errorData.detail ||
+                errorData.title ||
+                errorMessage;
+
+            } catch {
+
+              if (
+                responseText
+              ) {
+
+                errorMessage =
+                  responseText;
+              }
+            }
 
 
             console.error(
               "Corporate Dashboard API Error:",
-              errorText
+              errorMessage
             );
 
 
             throw new Error(
-              `Dashboard request failed: ${response.status}`
+              errorMessage
             );
           }
 
 
-          const data =
-            await response.json();
+          // ----------------------------------------------------
+          // PARSE SUCCESS RESPONSE
+          // ----------------------------------------------------
+
+          let data = null;
+
+
+          try {
+
+            data =
+              responseText
+                ? JSON.parse(
+                    responseText
+                  )
+                : null;
+
+          } catch (
+            parseError
+          ) {
+
+            console.error(
+              "Corporate Dashboard JSON Parse Error:",
+              parseError
+            );
+
+            throw new Error(
+              "Invalid dashboard response from server"
+            );
+          }
 
 
           console.log(
@@ -180,6 +271,10 @@ function Dashboard({
             data
           );
 
+
+          // ----------------------------------------------------
+          // SAVE DASHBOARD DATA
+          // ----------------------------------------------------
 
           setDashboard(
             data
@@ -218,16 +313,19 @@ function Dashboard({
   // ==========================================================
   // LOAD DASHBOARD EFFECT
   // IMPORTANT:
-  // THIS HOOK IS BEFORE ALL CONDITIONAL RETURNS
+  // THIS HOOK MUST STAY BEFORE CONDITIONAL RETURNS
   // ==========================================================
 
-  useEffect(() => {
+  useEffect(
+    () => {
 
-    loadDashboard();
+      loadDashboard();
 
-  }, [
-    loadDashboard,
-  ]);
+    },
+    [
+      loadDashboard,
+    ]
+  );
 
 
   // ==========================================================
@@ -321,8 +419,7 @@ function Dashboard({
 
 
   // ==========================================================
-  // LOADING
-  // NO HOOKS BELOW THIS POINT
+  // LOADING STATE
   // ==========================================================
 
   if (loading) {
@@ -352,7 +449,7 @@ function Dashboard({
 
 
   // ==========================================================
-  // ERROR
+  // ERROR STATE
   // ==========================================================
 
   if (!dashboard) {
@@ -633,9 +730,17 @@ function Dashboard({
     content = (
 
       <CodeReport
-        clientId={clientId}
-        token={token}
-        onBack={closeReports}
+        clientId={
+          clientId
+        }
+
+        token={
+          token
+        }
+
+        onBack={
+          closeReports
+        }
       />
 
     );
@@ -654,9 +759,17 @@ function Dashboard({
     content = (
 
       <TruCodeReport
-        clientId={clientId}
-        token={token}
-        onBack={closeReports}
+        clientId={
+          clientId
+        }
+
+        token={
+          token
+        }
+
+        onBack={
+          closeReports
+        }
       />
 
     );
@@ -665,7 +778,7 @@ function Dashboard({
 
 
   // ==========================================================
-  // DASHBOARD
+  // MAIN DASHBOARD CONTENT
   // ==========================================================
 
   else {

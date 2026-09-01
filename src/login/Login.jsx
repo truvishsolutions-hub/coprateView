@@ -15,7 +15,7 @@ import {
 
 // const API_URL = "https://truvish-backend-production.up.railway.app/api/corporate/login";
 
-const API_URL = "http://localhost:8080/api/corporate/login";
+const API_URL = "http://api.truvish.com/api/corporate/login";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");

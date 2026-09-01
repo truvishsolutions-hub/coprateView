@@ -51,9 +51,9 @@ const TruCodeReport = ({
       return path;
     }
     if (path.startsWith("/")) {
-      return `http://localhost:8080${path}`;
+      return `api.truvish.com${path}`;
     }
-    return `http://localhost:8080/uploads/${path}`;
+    return `api.truvish.com/uploads/${path}`;
   };
 
   // =========================================================
@@ -76,7 +76,7 @@ const TruCodeReport = ({
       try {
         if (!cancelled) setLoading(true);
 
-        const url = `http://localhost:8080/api/admin/tru-blank-code/client/${clientId}`;
+        const url = `http://api.truvish.com/api/admin/tru-blank-code/client/${clientId}`;
         console.log("Loading PHYSICAL TruCard report from:", url);
 
         const response = await fetch(url, {
