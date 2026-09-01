@@ -1,0 +1,197 @@
+/* ==========================================================
+   DASHBOARD WRAPPER
+========================================================== */
+
+.dashboard-wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   DASHBOARD CONTAINER
+========================================================== */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* ==========================================================
+   DASHBOARD SUMMARY (Wallet + Cashback)
+   - Now stacked vertically (up-down)
+   - Gap between them = 24px
+========================================================== */
+
+.dashboard-summary {
+    display: flex;
+    flex-direction: column;   /* stack vertically */
+    gap: 24px;               /* vertical spacing between cards */
+}
+
+.dashboard-summary > * {
+    width: 100%;             /* each card takes full width */
+}
+
+
+/* ==========================================================
+   DASHBOARD HEADER
+========================================================== */
+
+.dashboard-header {
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    color: #153b53;
+}
+
+.dashboard-header p {
+    margin-top: 8px;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: #7a8794;
+}
+
+
+/* ==========================================================
+   CODE CARDS (Issued, Redeemed, Unused)
+========================================================== */
+
+.dashboard-cards {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(300px, 1fr));
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+.dashboard-cards > * {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+}
+
+
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (min-width: 1700px) {
+
+    .dashboard-container {
+        max-width: 1550px;
+    }
+}
+
+
+/* ==========================================================
+   DESKTOP
+========================================================== */
+
+@media (max-width: 1400px) {
+
+    .dashboard-container {
+        max-width: 1300px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns:
+            repeat(3, minmax(260px, 1fr));
+
+        gap: 18px;
+    }
+}
+
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .dashboard-wrapper {
+        padding: 20px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 16px;
+    }
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .dashboard-wrapper {
+        padding: 18px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .dashboard-wrapper {
+        padding: 16px;
+    }
+
+    .dashboard-container {
+        gap: 16px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+}

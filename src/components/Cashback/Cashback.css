@@ -1,0 +1,213 @@
+.cashback-card {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f3fbf6 55%,
+    #ecfaf0 100%
+  );
+
+  border: 1px solid #d8efe1;
+  border-radius: 20px;
+  padding: 22px 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  color: #17344f;
+
+  box-shadow: 0 12px 26px rgba(31, 143, 103, 0.08);
+
+  transition: all 0.3s ease;
+}
+
+.cashback-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(31, 143, 103, 0.14);
+}
+
+/* ==========================
+   Left
+========================== */
+
+.cashback-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.cashback-icon-box {
+  width: 56px;
+  height: 56px;
+
+  border-radius: 16px;
+
+  background: #e9f8ef;
+  border: 1px solid #d6efe0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.cashback-icon {
+  font-size: 32px;
+  color: #1f8f67;
+}
+
+.cashback-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cashback-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c7a89;
+}
+
+.cashback-title {
+  margin-top: 4px;
+
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+
+  color: #1f8f67;
+}
+
+.cashback-description {
+  margin-top: 6px;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #6c7a89;
+
+  max-width: 420px;
+}
+
+/* ==========================
+   Right
+========================== */
+
+.cashback-right {
+  min-width: 220px;
+  text-align: right;
+}
+
+.cashback-earned-label {
+  display: block;
+
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: #6c7a89;
+}
+
+.cashback-amount {
+  margin-top: 6px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+.cashback-rupee {
+  font-size: 28px;
+  color: #1f8f67;
+}
+
+.cashback-value {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+
+  color: #1f8f67;
+}
+
+.cashback-footer {
+  display: block;
+  margin-top: 6px;
+
+  font-size: 12px;
+  color: #6c7a89;
+}
+
+/* ==========================
+   Tablet
+========================== */
+
+@media (max-width: 992px) {
+
+  .cashback-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cashback-right {
+    width: 100%;
+    text-align: left;
+  }
+
+  .cashback-amount {
+    justify-content: flex-start;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 576px) {
+
+  .cashback-card {
+    padding: 18px;
+    border-radius: 16px;
+    gap: 18px;
+  }
+
+  .cashback-left {
+    gap: 12px;
+  }
+
+  .cashback-icon-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cashback-icon {
+    font-size: 28px;
+  }
+
+  .cashback-title {
+    font-size: 20px;
+  }
+
+  .cashback-description {
+    font-size: 12px;
+  }
+
+  .cashback-value {
+    font-size: 32px;
+  }
+
+  .cashback-rupee {
+    font-size: 22px;
+  }
+
+}

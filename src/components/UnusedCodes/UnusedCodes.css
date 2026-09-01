@@ -1,0 +1,470 @@
+/* =========================================================
+   FLIP WRAPPER
+========================================================= */
+
+.unused-flip-wrapper {
+  width: 100%;
+  min-height: 300px;
+  height: 100%;
+
+  perspective: 1200px;
+}
+
+
+/* =========================================================
+   FLIP INNER
+========================================================= */
+
+.unused-flip-inner {
+  position: relative;
+
+  width: 100%;
+  min-height: 300px;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+
+/* =========================================================
+   FLIPPED
+========================================================= */
+
+.unused-flip-wrapper.is-flipped .unused-flip-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.unused-card {
+  width: 100%;
+  min-height: 300px;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  background: #252525;
+
+  border: 1px solid #363636;
+
+  border-radius: 24px;
+
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.unused-card:hover {
+  border-color: rgba(26, 176, 183, 0.3);
+
+  box-shadow:
+    0 18px 40px rgba(15, 58, 82, 0.12);
+}
+
+
+/* =========================================================
+   FRONT
+========================================================= */
+
+.unused-front {
+  position: relative;
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.unused-back {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.unused-header {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.unused-icon {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 18px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: #2fc7d3;
+
+  color: #ffffff;
+
+  font-size: 28px;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.unused-arrow {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: #f7fbfc;
+
+  border: 1px solid #e6eef3;
+
+  color: #2fc7d3;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.unused-title {
+  width: 100%;
+
+  margin-top: 22px;
+
+  font-size: 28px;
+
+  font-weight: 900;
+
+  color: #153b53;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.unused-section {
+  width: 100%;
+
+  margin-top: 22px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.unused-label {
+  width: 100%;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.2px;
+
+  color: #d6d6d6;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   VALUE
+========================================================= */
+
+.unused-value {
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  font-size: 46px;
+
+  font-weight: 900;
+
+  color: #153b53;
+
+  line-height: 1;
+}
+
+
+.unused-value svg {
+  font-size: 30px;
+
+  margin-right: 4px;
+
+  color: #169ca1;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.unused-divider {
+  width: 100%;
+
+  height: 2px;
+
+  margin: 20px 0;
+
+  background: #434343;
+}
+
+
+/* =========================================================
+   COUNT
+========================================================= */
+
+.unused-count {
+  width: 100%;
+
+  margin-top: 12px;
+
+  font-size: 26px;
+
+  font-weight: 800;
+
+  color: #153b53;
+
+  line-height: 1;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.unused-bottom {
+  width: 100%;
+
+  margin-top: auto;
+
+  padding-top: 26px;
+
+  border-top: 2px solid #434343;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   STAT
+========================================================= */
+
+.unused-stat {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+
+/* =========================================================
+   SMALL TITLE
+========================================================= */
+
+.unused-small-title {
+  font-size: 15px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+  color: #d6d6d6;
+}
+
+
+/* =========================================================
+   STAT VALUE
+========================================================= */
+
+.unused-stat-value {
+  margin-top: 10px;
+
+  font-size: 36px;
+
+  font-weight: 900;
+
+  color: #153b53;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.unused-footer {
+  width: 100%;
+
+  margin: auto 0 0;
+
+  padding-top: 26px;
+
+  font-size: 16px;
+
+  color: #e0e0e0;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+  .unused-flip-wrapper,
+  .unused-flip-inner,
+  .unused-card {
+    min-height: 300px;
+  }
+
+  .unused-title {
+    font-size: 24px;
+  }
+
+  .unused-value {
+    font-size: 36px;
+  }
+
+  .unused-count {
+    font-size: 22px;
+  }
+
+  .unused-stat-value {
+    font-size: 24px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+  .unused-flip-wrapper,
+  .unused-flip-inner,
+  .unused-card {
+    min-height: 300px;
+  }
+
+  .unused-card {
+    padding: 18px;
+
+    border-radius: 18px;
+  }
+
+  .unused-icon {
+    width: 48px;
+    height: 48px;
+
+    font-size: 24px;
+  }
+
+  .unused-arrow {
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
+  }
+
+  .unused-title {
+    font-size: 22px;
+  }
+
+  .unused-value {
+    font-size: 32px;
+  }
+
+  .unused-value svg {
+    font-size: 24px;
+  }
+
+  .unused-count {
+    font-size: 20px;
+  }
+
+  .unused-bottom {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .unused-stat-value {
+    font-size: 22px;
+  }
+
+  .unused-footer {
+    font-size: 14px;
+  }
+}

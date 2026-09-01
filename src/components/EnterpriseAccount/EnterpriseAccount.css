@@ -1,0 +1,297 @@
+.enterprise-account {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 25px;
+
+  background: #252525;
+  border: 1px solid #e7eef3;
+  border-radius: 20px;
+
+  padding: 24px 32px;
+
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+
+  align-items: center;
+
+  gap: 30px;
+
+  box-shadow: 0 10px 30px rgba(21, 59, 83, 0.08);
+}
+
+/* Left */
+
+.enterprise-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* Backend Client Logo */
+
+.client-logo {
+  width: 72px;
+  height: 72px;
+
+  flex-shrink: 0;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 2px solid #edf2f7;
+
+  background: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.client-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Client Details */
+
+.enterprise-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.enterprise-type {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #169ca1;
+}
+
+
+.client-name {
+  margin-top: 4px;
+
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+
+  color: #153b53;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.enterprise-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #606366;
+}
+
+/* Right */
+
+.enterprise-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Truvish Logo */
+
+.truvish-logo {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+/* Brand */
+
+.truvish-text {
+  text-align: right;
+}
+
+.truvish-text h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: #153b53;
+}
+
+.truvish-text span {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #606366;
+}
+
+/* Hover */
+
+.enterprise-account:hover {
+  box-shadow: 0 14px 32px rgba(21, 59, 83, 0.08);
+  transition: 0.3s ease;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 992px) {
+
+  .enterprise-account {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .enterprise-right {
+    justify-content: flex-start;
+  }
+
+  .brand-details {
+    text-align: left;
+  }
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 576px) {
+
+  .enterprise-account {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .enterprise-left {
+    gap: 12px;
+  }
+
+  .client-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .client-name {
+    font-size: 20px;
+  }
+
+  .client-subtitle {
+    font-size: 13px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+  }
+
+  .brand-tagline {
+    font-size: 12px;
+  }
+
+  .truvish-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+}
+.client-logo-box {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid #edf2f7;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+
+/* Logout Button */
+
+
+
+/* Logout Button */
+
+.logout-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    width: 95px;
+    height: 32px;
+
+    /* Push completely to the right */
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: -2px;   /* Increase this if you want even more right */
+
+    border: none;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
+    );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all .3s ease;
+
+    box-shadow:
+        0 6px 15px rgba(15,23,42,0.25);
+}
+
+.logout-btn:hover{
+    transform: translateX(3px) translateY(-2px);
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    box-shadow:
+        0 10px 22px rgba(15,23,42,0.35);
+}
+
+.logout-btn:active{
+    transform: scale(0.96);
+}
+
+.logout-icon{
+    font-size: 15px;
+}

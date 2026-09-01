@@ -1,0 +1,1145 @@
+/* =============================================================
+   WRAPPER
+   ============================================================= */
+
+.code-report-wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #f3f7fa;
+
+    padding: 8px 32px 20px 32px;
+
+    box-sizing: border-box;
+
+    font-family:
+        'Inter',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+}
+
+
+/* =============================================================
+   LOADING
+   ============================================================= */
+
+.code-report-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 60vh;
+
+    font-size: 18px;
+
+    color: #1d2e39;
+
+    font-weight: 500;
+}
+
+
+/* =============================================================
+   HEADER
+   ============================================================= */
+
+.code-report-header {
+    margin-bottom: 16px;
+}
+
+
+.code-report-breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =============================================================
+   BACK
+   ============================================================= */
+
+.code-report-back {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    background: none;
+
+    border: none;
+
+    color: #1d2e39;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    padding: 6px 12px;
+
+    border-radius: 6px;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+
+    font-family: inherit;
+}
+
+
+.code-report-back:hover {
+    background: #a9d6e2;
+
+    color: #0e4a63;
+}
+
+
+.code-report-back svg {
+    font-size: 18px;
+}
+
+
+/* =============================================================
+   TITLE
+   ============================================================= */
+
+.code-report-title-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    flex: 1;
+}
+
+
+.code-report-title {
+    font-size: 24px;
+
+    font-weight: 600;
+
+    color: #0e4a63;
+
+    margin: 0;
+
+    letter-spacing: -0.3px;
+}
+
+
+.code-report-subtitle {
+    font-size: 14px;
+
+    color: #1d2e39;
+
+    margin: 0;
+
+    font-weight: 400;
+}
+
+
+/* =============================================================
+   DOWNLOAD
+   ============================================================= */
+
+.code-report-download {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #0e4a63;
+
+    color: #f3f7fa;
+
+    border: none;
+
+    padding: 8px 16px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s;
+
+    font-family: inherit;
+}
+
+
+.code-report-download:hover {
+    background: #1ab0b7;
+}
+
+
+.code-report-download svg {
+    font-size: 18px;
+}
+
+
+/* =============================================================
+   SEARCH
+   ============================================================= */
+
+.code-report-search-container {
+    margin-top: 10px;
+
+    width: 100%;
+}
+
+
+.code-report-search {
+    display: flex;
+
+    align-items: center;
+
+    background: #ffffff;
+
+    border:
+        1.5px solid
+        #dce7ed;
+
+    border-radius: 10px;
+
+    padding: 0 16px;
+
+    max-width: 580px;
+
+    transition:
+        border-color 0.25s,
+        box-shadow 0.25s;
+
+    box-shadow:
+        0 1px 3px
+        rgba(
+            0,
+            0,
+            0,
+            0.02
+        );
+}
+
+
+.code-report-search:focus-within {
+    border-color: #1ab0b7;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            26,
+            176,
+            183,
+            0.12
+        );
+}
+
+
+.code-report-search .search-icon {
+    color: #8aa5b5;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+
+    margin-right: 10px;
+}
+
+
+.code-report-search input {
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding: 12px 0;
+
+    font-size: 14px;
+
+    font-family: inherit;
+
+    color: #1d2e39;
+
+    min-width: 0;
+}
+
+
+.code-report-search input::placeholder {
+    color: #9bb3c2;
+
+    font-weight: 400;
+
+    letter-spacing: 0.2px;
+}
+
+
+.code-report-search .clear-btn {
+    background: none;
+
+    border: none;
+
+    color: #8aa5b5;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    padding:
+        4px
+        4px
+        4px
+        8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        color 0.2s;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.code-report-search .clear-btn:hover {
+    color: #d95f6c;
+}
+
+
+/* =============================================================
+   TABLE CONTAINER
+   ============================================================= */
+
+.code-report-table-container {
+    width: 100%;
+
+    background: transparent;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+/* =============================================================
+   TABLE SCROLL
+   ============================================================= */
+
+/*
+   IMPORTANT
+
+   Header:
+   approximately 47px
+
+   Each row:
+   approximately 62px
+
+   6 rows:
+   approximately 372px
+
+   Extra spacing:
+   approximately 25px
+
+   TOTAL:
+   approximately 445px
+
+   Isliye 455px rakha hai.
+*/
+
+.code-report-table-scroll {
+    width: 100%;
+
+    max-height: 455px;
+
+    overflow-x: auto;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #a9d6e2
+        transparent;
+}
+
+
+/* =============================================================
+   SCROLLBAR
+   ============================================================= */
+
+.code-report-table-scroll::-webkit-scrollbar {
+    width: 7px;
+
+    height: 7px;
+}
+
+
+.code-report-table-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.code-report-table-scroll::-webkit-scrollbar-thumb {
+    background: #a9d6e2;
+
+    border-radius: 10px;
+}
+
+
+.code-report-table-scroll::-webkit-scrollbar-thumb:hover {
+    background: #1ab0b7;
+}
+
+
+/* =============================================================
+   TABLE
+   ============================================================= */
+
+.code-report-table {
+    width: 100%;
+
+    min-width: 1200px;
+
+    border-collapse: separate;
+
+    border-spacing: 0 5px;
+
+    font-size: 14px;
+
+    table-layout: auto;
+}
+
+
+/* =============================================================
+   TABLE HEADER
+   ============================================================= */
+
+.code-report-table thead tr {
+    background: #0e4a63;
+}
+
+
+.code-report-table thead th {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    padding: 14px 16px;
+
+    text-align: left;
+
+    font-weight: 600;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+
+    color: #f3f7fa;
+
+    background: #0e4a63;
+
+    white-space: nowrap;
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+}
+
+
+.code-report-table thead th:first-child {
+    border-top-left-radius: 8px;
+
+    border-bottom-left-radius: 8px;
+}
+
+
+.code-report-table thead th:last-child {
+    border-right: none;
+
+    border-top-right-radius: 8px;
+
+    border-bottom-right-radius: 8px;
+}
+
+
+/* =============================================================
+   BODY ROW
+   ============================================================= */
+
+.code-report-table tbody tr {
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 4px
+        rgba(
+            0,
+            0,
+            0,
+            0.04
+        ),
+        0 1px 2px
+        rgba(
+            0,
+            0,
+            0,
+            0.02
+        );
+
+    transition:
+        box-shadow 0.2s,
+        transform 0.1s;
+}
+
+
+.code-report-table tbody tr:hover {
+    box-shadow:
+        0 4px 12px
+        rgba(
+            14,
+            74,
+            99,
+            0.08
+        );
+
+    transform: translateY(-1px);
+}
+
+
+/* =============================================================
+   BODY CELL
+   ============================================================= */
+
+.code-report-table tbody td {
+    padding: 14px 16px;
+
+    color: #1d2e39;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    line-height: 1.5;
+
+    background: #ffffff;
+
+    border-right:
+        1px solid
+        #e5e7eb;
+}
+
+
+.code-report-table tbody td:last-child {
+    border-right: none;
+}
+
+
+.code-report-table tbody tr td:first-child {
+    border-top-left-radius: 8px;
+
+    border-bottom-left-radius: 8px;
+}
+
+
+.code-report-table tbody tr td:last-child {
+    border-top-right-radius: 8px;
+
+    border-bottom-right-radius: 8px;
+}
+
+
+/* =============================================================
+   COLUMNS
+   ============================================================= */
+
+.number-cell {
+    text-align: center;
+
+    width: 40px;
+
+    font-weight: 500;
+
+    color: #1d2e39;
+}
+
+
+.code-cell {
+    font-weight: 500;
+
+    color: #0e4a63;
+
+    font-size: 13px;
+
+    letter-spacing: 0.2px;
+
+    font-family:
+        'Inter',
+        monospace;
+
+    white-space: nowrap;
+}
+
+
+.denomination-cell {
+    font-weight: 500;
+
+    color: #1d2e39;
+}
+
+
+/* =============================================================
+   STATUS
+   ============================================================= */
+
+.code-report-table thead th:nth-child(4),
+.code-report-table tbody td:nth-child(4) {
+    text-align: center;
+}
+
+
+.status-badge {
+    display: inline-block;
+
+    padding: 4px 14px;
+
+    border-radius: 100px;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    line-height: 1.5;
+
+    white-space: nowrap;
+}
+
+
+.status-redeemed {
+    background: #ed953e;
+
+    color: #ffffff;
+}
+
+
+.status-active {
+    background: #b0ebb2;
+
+    color: #1d2e39;
+}
+
+
+.status-expired {
+    background: #d95f6c;
+
+    color: #ffffff;
+}
+
+
+/* =============================================================
+   CHECKBOX
+   ============================================================= */
+
+.select-header {
+    text-align: center !important;
+}
+
+
+.select-cell {
+    text-align: center;
+
+    width: 48px;
+}
+
+
+.select-cell input[type="checkbox"],
+.select-header input[type="checkbox"] {
+    width: 16px;
+
+    height: 16px;
+
+    accent-color: #1ab0b7;
+
+    cursor: pointer;
+}
+
+
+/* =============================================================
+   THEME
+   ============================================================= */
+
+.theme-cell {
+    text-align: center;
+
+    vertical-align: middle;
+}
+
+
+.theme-image {
+    width: 80px;
+
+    height: 50px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    display: block;
+
+    margin: 0 auto;
+
+    border:
+        1px solid
+        #e5e7eb;
+}
+
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+
+.code-report-table-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    padding:
+        8px
+        20px
+        0
+        20px;
+
+    background: transparent;
+}
+
+
+.code-report-pagination {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+.pagination-info {
+    font-size: 13px;
+
+    color: #1d2e39;
+
+    font-weight: 400;
+
+    white-space: nowrap;
+}
+
+
+.pagination-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =============================================================
+   ENTRIES
+   ============================================================= */
+
+.pagination-entries {
+    padding:
+        6px
+        10px;
+
+    border:
+        1px solid
+        #a9d6e2;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: #0e4a63;
+
+    cursor: pointer;
+
+    outline: none;
+
+    font-family: inherit;
+
+    min-width: 60px;
+}
+
+
+.pagination-entries:hover,
+.pagination-entries:focus {
+    border-color: #1ab0b7;
+}
+
+
+/* =============================================================
+   PAGINATION BUTTON
+   ============================================================= */
+
+.pagination-btn {
+    padding:
+        6px
+        16px;
+
+    border:
+        1px solid
+        #a9d6e2;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: #0e4a63;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+
+    font-family: inherit;
+}
+
+
+.pagination-btn:hover:not(:disabled) {
+    background: #f3f7fa;
+
+    border-color: #1ab0b7;
+}
+
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    background: #f3f7fa;
+
+    border-color: #d1d5db;
+}
+
+
+/* =============================================================
+   NO RESULTS
+   ============================================================= */
+
+.code-report-no-results {
+    text-align: center;
+
+    padding:
+        48px
+        20px;
+
+    color: #1d2e39;
+
+    font-size: 15px;
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 4px
+        rgba(
+            0,
+            0,
+            0,
+            0.04
+        );
+}
+
+
+.code-report-no-results strong {
+    color: #0e4a63;
+}
+
+
+.code-report-no-results .no-results-icon {
+    font-size: 40px;
+
+    color: #a9d6e2;
+
+    margin-bottom: 12px;
+
+    display: block;
+}
+
+
+/* =============================================================
+   1200px
+   ============================================================= */
+
+@media (max-width: 1200px) {
+
+    .code-report-wrapper {
+        padding:
+            6px
+            18px
+            16px
+            18px;
+    }
+
+
+    .code-report-table {
+        min-width: 1200px;
+    }
+
+}
+
+
+/* =============================================================
+   TABLET
+   ============================================================= */
+
+@media (max-width: 768px) {
+
+    .code-report-wrapper {
+        padding:
+            6px
+            14px
+            14px
+            14px;
+    }
+
+
+    .code-report-header {
+        margin-bottom: 14px;
+    }
+
+
+    .code-report-title {
+        font-size: 20px;
+    }
+
+
+    .code-report-subtitle {
+        font-size: 12px;
+    }
+
+
+    .code-report-breadcrumb {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .code-report-download {
+        align-self: flex-start;
+
+        margin-top: 4px;
+    }
+
+
+    .code-report-search {
+        max-width: 100%;
+    }
+
+
+    .code-report-search input {
+        font-size: 13px;
+
+        padding:
+            10px
+            0;
+    }
+
+
+    /*
+       Mobile par bhi 6 rows visible
+    */
+
+    .code-report-table-scroll {
+        max-height: 445px;
+    }
+
+
+    .code-report-table {
+        min-width: 1200px;
+    }
+
+
+    .code-report-table-footer {
+        justify-content: center;
+
+        padding:
+            8px
+            16px
+            0
+            16px;
+    }
+
+
+    .code-report-pagination {
+        justify-content: center;
+
+        width: 100%;
+
+        gap: 12px;
+    }
+
+
+    .pagination-controls {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+}
+
+
+/* =============================================================
+   SMALL MOBILE
+   ============================================================= */
+
+@media (max-width: 480px) {
+
+    .code-report-wrapper {
+        padding:
+            4px
+            12px
+            12px
+            12px;
+    }
+
+
+    .code-report-title {
+        font-size: 18px;
+    }
+
+
+    /*
+       Small mobile:
+       still approximately 6 rows
+    */
+
+    .code-report-table-scroll {
+        max-height: 435px;
+    }
+
+
+    .code-report-table tbody td,
+    .code-report-table thead th {
+        padding:
+            10px
+            12px;
+
+        font-size: 12px;
+    }
+
+
+    .status-badge {
+        font-size: 11px;
+
+        padding:
+            3px
+            10px;
+    }
+
+
+    .pagination-info {
+        font-size: 12px;
+    }
+
+
+    .pagination-btn {
+        padding:
+            4px
+            12px;
+
+        font-size: 12px;
+    }
+
+
+    .pagination-entries {
+        padding:
+            4px
+            8px;
+
+        font-size: 12px;
+
+        min-width: 50px;
+    }
+
+
+    .code-report-search {
+        padding:
+            0
+            12px;
+    }
+
+
+    .code-report-search .search-icon {
+        font-size: 17px;
+
+        margin-right: 8px;
+    }
+
+
+    .code-report-search input {
+        font-size: 12px;
+
+        padding:
+            8px
+            0;
+    }
+
+
+    .code-report-search .clear-btn {
+        font-size: 16px;
+
+        padding:
+            2px
+            2px
+            2px
+            6px;
+    }
+
+} 

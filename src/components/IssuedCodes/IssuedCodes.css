@@ -1,0 +1,570 @@
+/* =========================================================
+   FLIP WRAPPER
+========================================================= */
+
+.issued-flip-wrapper {
+  width: 100%;
+  min-height: 300px;
+  height: 100%; /* fill grid cell */
+
+  perspective: 1200px;
+}
+
+
+/* =========================================================
+   FLIP INNER
+========================================================= */
+
+.issued-flip-inner {
+  position: relative;
+
+  width: 100%;
+  min-height: 300px;
+  height: 100%; /* fill wrapper */
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+
+/* =========================================================
+   FLIPPED STATE
+========================================================= */
+
+.issued-flip-wrapper.is-flipped .issued-flip-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   CARD COMMON
+========================================================= */
+
+.issued-card {
+  width: 100%;
+  min-height: 300px;
+  height: 100%; /* fill inner */
+
+  box-sizing: border-box;
+
+  text-align: left;
+
+  background: #252525;
+
+  border: 1px solid #363636;
+  border-radius: 24px;
+
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  box-shadow: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.issued-card:hover {
+  border-color: rgba(26, 176, 183, 0.35);
+
+  box-shadow:
+    0 18px 40px rgba(15, 58, 82, 0.12);
+}
+
+
+/* =========================================================
+   FRONT
+========================================================= */
+
+.issued-front {
+  position: relative;
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.issued-back {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.issued-header {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* =========================================================
+   LEFT ICON
+========================================================= */
+
+.issued-icon {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #2fc7d3;
+
+  color: #ffffff;
+
+  font-size: 28px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FLIP BUTTON
+========================================================= */
+
+.issued-arrow {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: #0fa5b4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  border: none;
+
+  transition:
+    background 0.25s ease,
+    transform 0.3s ease;
+
+  flex-shrink: 0;
+}
+
+
+.issued-flip-button {
+  cursor: pointer;
+}
+
+
+.issued-flip-button:hover {
+  background: #1ab0b7;
+
+  transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.issued-title {
+  margin-top: 22px;
+  margin-bottom: 0;
+
+  text-align: left;
+
+  font-size: 28px;
+  font-weight: 900;
+
+  color: #153b53;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.issued-section {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin-top: 22px;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.issued-label {
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #d6d6d6;
+}
+
+
+/* =========================================================
+   VALUE
+========================================================= */
+
+.issued-value {
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  text-align: left;
+
+  font-size: 46px;
+  font-weight: 900;
+
+  color: #153b53;
+
+  line-height: 1;
+}
+
+
+.issued-value svg {
+  font-size: 30px;
+
+  margin-right: 4px;
+
+  color: #169ca1;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.issued-divider {
+  width: 100%;
+
+  height: 2px;
+
+  margin: 28px 0;
+
+  background: #434343;
+}
+
+
+/* =========================================================
+   COUNT
+========================================================= */
+
+.issued-count {
+  width: 100%;
+
+  margin-top: 12px;
+
+  text-align: left;
+
+  font-size: 26px;
+  font-weight: 800;
+
+  color: #153b53;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   CODE REPORT BUTTON
+========================================================= */
+
+.issued-code-view {
+  width: 100%;
+
+  height: 72px;
+
+  margin-top: 38px;
+
+  padding: 0 22px;
+
+  border-radius: 18px;
+
+  border: 1.5px solid #169ca1;
+
+  background: rgba(18, 58, 76, 0.68);
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  color: #ffffff;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.issued-code-view:hover {
+  background: rgba(25, 76, 96, 0.82);
+
+  border-color: #1ab0b7;
+
+  box-shadow:
+    0 8px 25px rgba(26, 176, 183, 0.12);
+
+  transform: translateY(-2px);
+}
+
+
+.issued-code-view:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   CODE VIEW ICON
+========================================================= */
+
+.code-view-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #1ab0b7;
+
+  font-size: 40px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CODE VIEW TEXT
+========================================================= */
+
+.code-view-text {
+  flex: 1;
+
+  text-align: center;
+
+  font-size: 22px;
+
+  font-weight: 500;
+
+  color: #ffffff;
+
+  margin-left: 8px;
+}
+
+
+/* =========================================================
+   CODE VIEW ARROW
+========================================================= */
+
+.code-view-arrow {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #1ab0b7;
+
+  font-size: 34px;
+
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease;
+}
+
+
+.issued-code-view:hover .code-view-arrow {
+  transform: translateX(5px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.issued-footer {
+  width: 100%;
+
+  margin-top: auto;
+
+  padding-top: 26px;
+
+  text-align: left;
+
+  font-size: 18px;
+
+  color: #e0e0e0;
+
+  border: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+  .issued-flip-wrapper,
+  .issued-flip-inner,
+  .issued-card {
+    min-height: 300px;
+  }
+
+  .issued-code-view {
+    height: 68px;
+
+    margin-top: 34px;
+
+    padding: 0 20px;
+  }
+
+  .code-view-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 36px;
+  }
+
+  .code-view-text {
+    font-size: 20px;
+  }
+
+  .code-view-arrow {
+    width: 34px;
+    height: 34px;
+
+    font-size: 32px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+  .issued-flip-wrapper,
+  .issued-flip-inner,
+  .issued-card {
+    min-height: 300px;
+  }
+
+  .issued-card {
+    padding: 20px;
+
+    border-radius: 20px;
+  }
+
+  .issued-icon {
+    width: 48px;
+    height: 48px;
+
+    font-size: 22px;
+
+    border-radius: 14px;
+  }
+
+  .issued-arrow {
+    width: 36px;
+    height: 36px;
+
+    font-size: 18px;
+  }
+
+  .issued-title {
+    margin-top: 22px;
+
+    font-size: 22px;
+  }
+
+  .issued-value {
+    font-size: 34px;
+  }
+
+  .issued-value svg {
+    font-size: 26px;
+  }
+
+  .issued-count {
+    font-size: 22px;
+  }
+
+  .issued-code-view {
+    height: 60px;
+
+    margin-top: 30px;
+
+    padding: 0 14px;
+
+    border-radius: 16px;
+  }
+
+  .code-view-icon {
+    width: 34px;
+    height: 34px;
+
+    font-size: 30px;
+  }
+
+  .code-view-text {
+    font-size: 17px;
+
+    margin-left: 4px;
+  }
+
+  .code-view-arrow {
+    width: 30px;
+    height: 30px;
+
+    font-size: 28px;
+  }
+
+  .issued-footer {
+    font-size: 14px;
+  }
+}
