@@ -10,19 +10,152 @@ import {
 
 const CodeReport = ({ clientId, token, onBack }) => {
 
-    // ─── API Base URL ─────────────────────────────────────────
-    const API_BASE = 'http://api.truvish.com';
+    // =========================================================
+    // API BASE URL
+    // =========================================================
 
-    // ─── Helper: Get full image URL ──────────────────────────
+    const API_BASE =
+        import.meta.env.VITE_API_URL ||
+        "https://api.truvish.com";
+
+
+    // =========================================================
+    // HELPER: GET FULL IMAGE URL
+    // =========================================================
+
     const getImageUrl = (path) => {
-        if (!path) return '';
-        if (path.startsWith('http://') || path.startsWith('https://')) {
-            return path;
+
+        if (!path || typeof path !== "string") {
+            return "";
         }
-        // Ensure exactly one slash between base and path
-        const normalized = path.startsWith('/') ? path : '/' + path;
-        return API_BASE + normalized;
+
+        const cleanPath = path.trim();
+
+        if (!cleanPath) {
+            return "";
+        }
+
+
+        // =====================================================
+        // OLD LOCALHOST URL
+        // Example:
+        // http://localhost:8080/uploads/image.jpg
+        // =====================================================
+
+        if (
+            cleanPath.startsWith("http://localhost:8080") ||
+            cleanPath.startsWith("https://localhost:8080") ||
+            cleanPath.startsWith("http://127.0.0.1:8080") ||
+            cleanPath.startsWith("https://127.0.0.1:8080")
+        ) {
+
+            const uploadsIndex =
+                cleanPath.indexOf("/uploads/");
+
+            if (uploadsIndex !== -1) {
+
+                return (
+                    API_BASE +
+                    cleanPath.substring(uploadsIndex)
+                );
+
+            }
+
+            return "";
+        }
+
+
+        // =====================================================
+        // HTTP URL
+        // Convert HTTP to HTTPS
+        // =====================================================
+
+        if (cleanPath.startsWith("http://")) {
+
+            try {
+
+                const url = new URL(cleanPath);
+
+                if (
+                    url.hostname === "api.truvish.com"
+                ) {
+
+                    return (
+                        "https://" +
+                        cleanPath.substring(7)
+                    );
+
+                }
+
+                return cleanPath.replace(
+                    /^http:\/\//i,
+                    "https://"
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Invalid image URL:",
+                    cleanPath
+                );
+
+                return "";
+            }
+        }
+
+
+        // =====================================================
+        // HTTPS URL
+        // =====================================================
+
+        if (cleanPath.startsWith("https://")) {
+            return cleanPath;
+        }
+
+
+        // =====================================================
+        // /uploads/image.jpg
+        // =====================================================
+
+        if (
+            cleanPath.startsWith("/uploads/")
+        ) {
+
+            return API_BASE + cleanPath;
+
+        }
+
+
+        // =====================================================
+        // uploads/image.jpg
+        // =====================================================
+
+        if (
+            cleanPath.startsWith("uploads/")
+        ) {
+
+            return (
+                API_BASE +
+                "/" +
+                cleanPath
+            );
+
+        }
+
+
+        // =====================================================
+        // ONLY FILE NAME
+        // Example:
+        // image.jpg
+        // =====================================================
+
+        return (
+            API_BASE +
+            "/uploads/" +
+            cleanPath
+        );
     };
+
 
     // =========================================================
     // STATE
@@ -34,7 +167,6 @@ const CodeReport = ({ clientId, token, onBack }) => {
     const [selectedIds, setSelectedIds] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
 
-    // DEFAULT = 6
     const [entriesPerPage, setEntriesPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -61,25 +193,33 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 return;
             }
 
+
             try {
 
                 setLoading(true);
 
+
                 const response = await fetch(
-                    `http://api.truvish.com/api/corporate/code-report/${clientId}`,
+                    `${API_BASE}/api/corporate/code-report/${clientId}`,
                     {
                         method: "GET",
+
                         headers: {
-                            Authorization: `Bearer ${token}`,
-                            "Content-Type": "application/json",
+                            Authorization:
+                                `Bearer ${token}`,
+
+                            "Content-Type":
+                                "application/json",
                         },
                     }
                 );
+
 
                 console.log(
                     "Code Report API Status:",
                     response.status
                 );
+
 
                 if (!response.ok) {
 
@@ -96,8 +236,10 @@ const CodeReport = ({ clientId, token, onBack }) => {
                     );
                 }
 
+
                 const data =
                     await response.json();
+
 
                 console.log(
                     "Code Report API Response:",
@@ -139,7 +281,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                     item.campaignName,
 
                                 theme:
-                                    item.theme,   // This is the image path
+                                    item.theme,
 
                                 redeemedBy:
                                     item.redeemedBy,
@@ -147,6 +289,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
                             })
                         )
                         : [];
+
 
                 setCodes(formattedData);
 
@@ -167,6 +310,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
 
         };
 
+
         loadCodeReport();
 
     }, [clientId, token]);
@@ -174,10 +318,10 @@ const CodeReport = ({ clientId, token, onBack }) => {
 
     // =========================================================
     // FORMAT CODE
-    //
+    // Example:
     // 813E-65DF-2E7D
-    //       ↓
-    // 813E XXXX XX7D
+    // =>
+    // 813E XXXX 2E7D
     // =========================================================
 
     const formatCode = (code) => {
@@ -205,7 +349,6 @@ const CodeReport = ({ clientId, token, onBack }) => {
             cleanCode.slice(-4);
 
         return `${firstFour} XXXX ${lastFour}`;
-
     };
 
 
@@ -227,7 +370,9 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 date.getTime()
             )
         ) {
+
             return dateTime;
+
         }
 
         return date.toLocaleDateString(
@@ -238,7 +383,6 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 year: "numeric",
             }
         );
-
     };
 
 
@@ -260,7 +404,9 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 date.getTime()
             )
         ) {
+
             return "-";
+
         }
 
         return date.toLocaleTimeString(
@@ -271,7 +417,6 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 hour12: true,
             }
         );
-
     };
 
 
@@ -292,7 +437,6 @@ const CodeReport = ({ clientId, token, onBack }) => {
         )}, ${formatTime(
             dateTime
         )}`;
-
     };
 
 
@@ -455,11 +599,13 @@ const CodeReport = ({ clientId, token, onBack }) => {
                             id,
                         ];
 
+
                 setSelectAll(
                     newSelection.length ===
                     filteredCodes.length &&
                     filteredCodes.length > 0
                 );
+
 
                 return newSelection;
 
@@ -582,21 +728,26 @@ const CodeReport = ({ clientId, token, onBack }) => {
                 "a"
             );
 
+
         link.setAttribute(
             "href",
             encodedUri
         );
+
 
         link.setAttribute(
             "download",
             "code_report.csv"
         );
 
+
         document.body.appendChild(
             link
         );
 
+
         link.click();
+
 
         document.body.removeChild(
             link
@@ -938,8 +1089,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
 
 
                         {/* =================================================
-                            IMPORTANT:
-                            ONLY TABLE SCROLLS
+                            TABLE SCROLL
                         ================================================= */}
 
                         <div className="code-report-table-scroll">
@@ -1028,6 +1178,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                                     item.id
                                                 }
                                             >
+
 
                                                 {/* # */}
 
@@ -1142,7 +1293,9 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                                     {item.theme ? (
 
                                                         <img
-                                                            src={getImageUrl(item.theme)}   // ✅ FIXED
+                                                            src={getImageUrl(
+                                                                item.theme
+                                                            )}
                                                             alt={
                                                                 item.campaignName ||
                                                                 "Theme"
@@ -1151,6 +1304,13 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                                             onError={(
                                                                 e
                                                             ) => {
+
+                                                                console.error(
+                                                                    "Theme image failed:",
+                                                                    getImageUrl(
+                                                                        item.theme
+                                                                    )
+                                                                );
 
                                                                 e.currentTarget.style.display =
                                                                     "none";
@@ -1226,7 +1386,9 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                     Showing{" "}
 
                                     {
-                                        startIndex + 1
+                                        totalEntries === 0
+                                            ? 0
+                                            : startIndex + 1
                                     }
 
                                     {" "}to{" "}
@@ -1249,7 +1411,7 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                 <div className="pagination-controls">
 
 
-                                    {/* 6 / 10 / 25 / 50 / 100 */}
+                                    {/* ENTRIES */}
 
                                     <select
                                         className="pagination-entries"
@@ -1284,6 +1446,8 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                     </select>
 
 
+                                    {/* PREVIOUS */}
+
                                     <button
                                         className="pagination-btn"
                                         onClick={() =>
@@ -1298,6 +1462,8 @@ const CodeReport = ({ clientId, token, onBack }) => {
                                         Previous
                                     </button>
 
+
+                                    {/* NEXT */}
 
                                     <button
                                         className="pagination-btn"
