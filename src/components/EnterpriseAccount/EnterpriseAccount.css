@@ -1,10 +1,14 @@
+/* ==========================================================
+   ENTERPRISE ACCOUNT — 淡绿背景 · 无震动
+========================================================== */
+
 .enterprise-account {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto 25px;
 
-  background: #252525;
-  border: 1px solid #e7eef3;
+  background: #F0F7F0;          /* 淡绿色背景 */
+  border: 1px solid #A9D6E2;
   border-radius: 20px;
 
   padding: 24px 32px;
@@ -16,10 +20,15 @@
 
   gap: 30px;
 
-  box-shadow: 0 10px 30px rgba(21, 59, 83, 0.08);
+  box-shadow: 0 4px 16px rgba(14, 74, 99, 0.08);
+  transition: box-shadow 0.3s ease;   /* 仅阴影过渡，无位移 */
 }
 
-/* Left */
+.enterprise-account:hover {
+  box-shadow: 0 8px 28px rgba(14, 74, 99, 0.12);
+}
+
+/* ---------- Left ---------- */
 
 .enterprise-left {
   display: flex;
@@ -28,33 +37,32 @@
   min-width: 0;
 }
 
-/* Backend Client Logo */
+/* Logo Box */
 
-.client-logo {
+.client-logo-box {
   width: 72px;
   height: 72px;
-
   flex-shrink: 0;
 
   border-radius: 18px;
   overflow: hidden;
 
-  border: 2px solid #edf2f7;
-
-  background: white;
+  border: 2px solid #A9D6E2;
+  background: #ffffff;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.client-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.client-logo-box:hover {
+  border-color: #1AB0B7;
+  box-shadow: 0 0 0 4px rgba(26, 176, 183, 0.15);
 }
 
-.client-logo img {
+.client-logo {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -76,53 +84,54 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #169ca1;
+  color: #1AB0B7;
+  background: #ffffff;
+  padding: 2px 12px;
+  border-radius: 20px;
+  display: inline-block;
 }
 
-
 .client-name {
-  margin-top: 4px;
-
-  font-size: 24px;
+  margin-top: 6px;
+  font-size: 26px;
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.03em;
-
-  color: #153b53;
-
+  color: #1D2E39;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .enterprise-subtitle {
-  margin-top: 6px;
-  font-size: 13px;
+  margin-top: 4px;
+  font-size: 14px;
   line-height: 1.5;
-  color: #606366;
+  color: #1D2E39;
+  opacity: 0.7;
 }
 
-/* Right */
+/* ---------- Right ---------- */
 
 .enterprise-right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
-
-/* Truvish Logo */
 
 .truvish-logo {
   width: 68px;
   height: 68px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(26, 176, 183, 0.20));
 }
-
-/* Brand */
 
 .truvish-text {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .truvish-text h2 {
@@ -131,167 +140,118 @@
   font-weight: 900;
   letter-spacing: -0.035em;
   line-height: 1;
-  color: #153b53;
+  color: #0E4A63;
 }
 
 .truvish-text span {
   display: block;
-  margin-top: 5px;
+  margin-top: 4px;
   font-size: 12px;
-  color: #606366;
+  color: #1D2E39;
+  opacity: 0.7;
+  letter-spacing: 0.02em;
 }
 
-/* Hover */
+/* Logout Button — 无位移 */
 
-.enterprise-account:hover {
-  box-shadow: 0 14px 32px rgba(21, 59, 83, 0.08);
-  transition: 0.3s ease;
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  width: 95px;
+  height: 34px;
+
+  margin-top: 10px;
+  align-self: flex-end;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #0E4A63;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(14, 74, 99, 0.25);
 }
 
-/* ===========================
-   Tablet
-=========================== */
+.logout-btn:hover {
+  background: #1AB0B7;
+  box-shadow: 0 8px 20px rgba(26, 176, 183, 0.35);
+}
+
+.logout-btn:active {
+  transform: scale(0.96);  /* 点击微缩，非位移 */
+}
+
+.logout-icon {
+  font-size: 15px;
+}
+
+/* ---------- Responsive ---------- */
 
 @media (max-width: 992px) {
-
   .enterprise-account {
     grid-template-columns: 1fr;
     gap: 18px;
   }
-
   .enterprise-right {
     justify-content: flex-start;
   }
-
-  .brand-details {
+  .truvish-text {
     text-align: left;
+    align-items: flex-start;
   }
-
+  .logout-btn {
+    align-self: flex-start;
+  }
 }
 
-/* ===========================
-   Mobile
-=========================== */
-
 @media (max-width: 576px) {
-
   .enterprise-account {
     padding: 16px;
     border-radius: 16px;
   }
-
   .enterprise-left {
     gap: 12px;
   }
-
-  .client-logo {
+  .client-logo-box {
     width: 52px;
     height: 52px;
+    border-radius: 14px;
   }
-
   .client-name {
     font-size: 20px;
   }
-
-  .client-subtitle {
+  .enterprise-type {
+    font-size: 11px;
+    padding: 1px 10px;
+  }
+  .enterprise-subtitle {
     font-size: 13px;
   }
-
-  .brand-name {
-    font-size: 22px;
-  }
-
-  .brand-tagline {
-    font-size: 12px;
-  }
-
   .truvish-logo {
     width: 46px;
     height: 46px;
   }
-
-}
-.client-logo-box {
-  width: 72px;
-  height: 72px;
-  flex-shrink: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 2px solid #edf2f7;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.client-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-
-
-/* Logout Button */
-
-
-
-/* Logout Button */
-
-.logout-btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-
-    width: 95px;
-    height: 32px;
-
-    /* Push completely to the right */
-    align-self: flex-end;
-    margin-left: auto;
-    margin-right: -2px;   /* Increase this if you want even more right */
-
-    border: none;
-    border-radius: 8px;
-
-    background: linear-gradient(
-        135deg,
-        #1e293b,
-        #334155
-    );
-
-    color: #ffffff;
-
+  .truvish-text h2 {
+    font-size: 20px;
+  }
+  .truvish-text span {
+    font-size: 11px;
+  }
+  .logout-btn {
+    width: 82px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .logout-icon {
     font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: all .3s ease;
-
-    box-shadow:
-        0 6px 15px rgba(15,23,42,0.25);
-}
-
-.logout-btn:hover{
-    transform: translateX(3px) translateY(-2px);
-
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b
-    );
-
-    box-shadow:
-        0 10px 22px rgba(15,23,42,0.35);
-}
-
-.logout-btn:active{
-    transform: scale(0.96);
-}
-
-.logout-icon{
-    font-size: 15px;
+  }
 }
